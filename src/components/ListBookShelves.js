@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import BookShelf from "./BookShelf";
 
 const ListBookShelves = ({ books, updateBookShelfOnChange }) => {
@@ -42,6 +43,11 @@ const ListBookShelves = ({ books, updateBookShelfOnChange }) => {
       </div>
     </div>
   );
+};
+
+ListBookShelves.propTypes = {
+  books: PropTypes.array.isRequired,
+  updateBookShelfOnChange: PropTypes.func.isRequired,
 };
 
 export default ListBookShelves;

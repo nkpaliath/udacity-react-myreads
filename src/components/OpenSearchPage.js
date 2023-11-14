@@ -1,8 +1,8 @@
-const OpenSearchPage = ({ onOpenSearch }) => (
+import { Link } from "react-router-dom";
+
+const OpenSearchPage = () => (
   <div className="open-search">
-    <a href="#Search" onClick={onOpenSearch}>
-      Add a book
-    </a>
+    <Link to="/search">Add a book</Link>
   </div>
 );
 

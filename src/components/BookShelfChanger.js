@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const BookShelfChanger = ({
   shelf = "none",
   handleShelfChange,
@@ -23,6 +25,12 @@ const BookShelfChanger = ({
       </select>
     </div>
   );
+};
+
+BookShelfChanger.propTypes = {
+  shelf: PropTypes.string,
+  handleShelfChange: PropTypes.func.isRequired,
+  displayNone: PropTypes.bool.isRequired,
 };
 
 export default BookShelfChanger;

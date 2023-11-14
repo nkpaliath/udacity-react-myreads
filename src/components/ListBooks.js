@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Book from "./Book";
 
 const ListBooks = ({ books = [], updateShelfChange, displaySearch }) => {
@@ -10,6 +11,12 @@ const ListBooks = ({ books = [], updateShelfChange, displaySearch }) => {
       />
     </li>
   ));
+};
+
+ListBooks.propTypes = {
+  books: PropTypes.array,
+  updateShelfChange: PropTypes.func.isRequired,
+  displaySearch: PropTypes.bool.isRequired,
 };
 
 export default ListBooks;

@@ -1,12 +1,10 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import ListBooks from "./ListBooks";
 import { search } from "../BooksAPI";
-import { useEffect, useState } from "react";
 
-const SearchBooks = ({
-  onCloseSearch,
-  booksInShelves,
-  handleUpdateShelfChange,
-}) => {
+const SearchBooks = ({ booksInShelves, handleUpdateShelfChange }) => {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -15,7 +13,17 @@ const SearchBooks = ({
       if (query !== "") {
         const res = await search(query.trim());
         if (res instanceof Array) {
-          setBooks(res);
+          setBooks(
+            res.map((item) => {
+              const bookInShelf = booksInShelves.find(
+                (book) => book.id === item.id
+              );
+              if (bookInShelf) {
+                item.shelf = bookInShelf.shelf;
+              }
+              return item;
+            })
+          );
         } else {
           setBooks([]);
         }
@@ -23,26 +31,14 @@ const SearchBooks = ({
     };
 
     getBooks();
-  }, [query]);
-
-  useEffect(() => {
-    setBooks((prevBooks) =>
-      prevBooks.map((item) => {
-        const bookInShelf = booksInShelves.find((book) => book.id === item.id);
-        if (bookInShelf) {
-          item.shelf = bookInShelf.shelf;
-        }
-        return item;
-      })
-    );
-  }, [booksInShelves]);
+  }, [query, booksInShelves]);
 
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a href="#Home" className="close-search" onClick={onCloseSearch}>
+        <Link to="/" className="close-search">
           Close
-        </a>
+        </Link>
         <div className="search-books-input-wrapper">
           <input
             type="text"
@@ -67,6 +63,11 @@ const SearchBooks = ({
       </div>
     </div>
   );
+};
+
+SearchBooks.propTypes = {
+  booksInShelves: PropTypes.array.isRequired,
+  handleUpdateShelfChange: PropTypes.func.isRequired,
 };
 
 export default SearchBooks;

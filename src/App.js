@@ -6,14 +6,11 @@ import SearchBooks from "./components/SearchBooks";
 import { getAll } from "./BooksAPI";
 
 function App() {
-  const [showSearchPage, setShowSearchPage] = useState(false);
   const [booksInShelves, setBooksInShelves] = useState([]);
 
   useEffect(() => {
-    if (!showSearchPage) {
-      getBooks();
-    }
-  }, [showSearchPage]);
+    getBooks();
+  }, []);
 
   const getBooks = async () => {
     const res = await getAll();
@@ -32,26 +29,21 @@ function App() {
           path="/"
           element={
             <HomePage
-              onOpenSearch={() => setShowSearchPage(true)}
               books={booksInShelves}
               handleUpdateShelfChange={handleUpdateShelfChange}
             />
           }
         />
+        <Route
+          path="/search"
+          element={
+            <SearchBooks
+              booksInShelves={booksInShelves}
+              handleUpdateShelfChange={handleUpdateShelfChange}
+            />
+          }
+        />
       </Routes>
-      {showSearchPage ? (
-        <SearchBooks
-          onCloseSearch={() => setShowSearchPage(false)}
-          booksInShelves={booksInShelves}
-          handleUpdateShelfChange={handleUpdateShelfChange}
-        />
-      ) : (
-        <HomePage
-          onOpenSearch={() => setShowSearchPage(true)}
-          books={booksInShelves}
-          handleUpdateShelfChange={handleUpdateShelfChange}
-        />
-      )}
     </div>
   );
 }

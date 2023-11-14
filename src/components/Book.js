@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import BookShelfChanger from "./BookShelfChanger";
 import { update } from "../BooksAPI";
 
@@ -33,6 +34,12 @@ const Book = ({ book, onShelfChange, displaySearch }) => {
       </div>
     </div>
   );
+};
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  onShelfChange: PropTypes.func.isRequired,
+  displaySearch: PropTypes.bool.isRequired,
 };
 
 export default Book;
