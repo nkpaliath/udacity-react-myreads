@@ -2,11 +2,14 @@ import Header from "./Header";
 import ListBookShelves from "./ListBookShelves";
 import OpenSearchPage from "./OpenSearchPage";
 
-const HomePage = () => (
+const HomePage = ({ onOpenSearch, books, handleUpdateShelfChange }) => (
   <div className="list-books">
     <Header />
-    <ListBookShelves />
-    <OpenSearchPage />
+    <ListBookShelves
+      books={books}
+      updateBookShelfOnChange={handleUpdateShelfChange}
+    />
+    <OpenSearchPage onOpenSearch={onOpenSearch} />
   </div>
 );
 

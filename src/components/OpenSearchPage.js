@@ -1,6 +1,8 @@
-const OpenSearchPage = () => (
+const OpenSearchPage = ({ onOpenSearch }) => (
   <div className="open-search">
-    <a href="/search">Add a book</a>
+    <a href="#Search" onClick={onOpenSearch}>
+      Add a book
+    </a>
   </div>
 );
 
