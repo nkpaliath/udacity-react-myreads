@@ -10,7 +10,7 @@ const SearchBooks = ({ booksInShelves, handleUpdateShelfChange }) => {
 
   useEffect(() => {
     const getBooks = async () => {
-      if (query !== "") {
+      if (query.trim() !== "") {
         const res = await search(query.trim());
         if (res instanceof Array) {
           setBooks(
@@ -45,7 +45,7 @@ const SearchBooks = ({ booksInShelves, handleUpdateShelfChange }) => {
             placeholder="Search by title, author, or ISBN"
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value.trim());
+              setQuery(e.target.value);
             }}
           />
         </div>
