@@ -7,11 +7,7 @@ const BookShelf = ({ shelfTitle, books, updateShelfChange }) => {
       <h2 className="bookshelf-title">{shelfTitle}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          <ListBooks
-            books={books}
-            updateShelfChange={updateShelfChange}
-            displaySearch={false}
-          />
+          <ListBooks books={books} updateShelfChange={updateShelfChange} />
         </ol>
       </div>
     </div>

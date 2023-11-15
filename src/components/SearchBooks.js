@@ -56,7 +56,6 @@ const SearchBooks = ({ booksInShelves, handleUpdateShelfChange }) => {
             <ListBooks
               books={books}
               updateShelfChange={handleUpdateShelfChange}
-              displaySearch={true}
             />
           )}
         </ol>

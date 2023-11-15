@@ -1,10 +1,6 @@
 import PropTypes from "prop-types";
 
-const BookShelfChanger = ({
-  shelf = "none",
-  handleShelfChange,
-  displayNone,
-}) => {
+const BookShelfChanger = ({ shelf = "none", handleShelfChange }) => {
   return (
     <div className="book-shelf-changer">
       <select
@@ -13,15 +9,13 @@ const BookShelfChanger = ({
           handleShelfChange(e.target.value);
         }}
       >
-        <option value="none" disabled>
+        <option value="" disabled>
           Move to...
         </option>
         <option value="currentlyReading">Currently Reading</option>
         <option value="wantToRead">Want to Read</option>
         <option value="read">Read</option>
-        <option value="none" hidden={displayNone}>
-          None
-        </option>
+        <option value="none">None</option>
       </select>
     </div>
   );
@@ -30,7 +24,6 @@ const BookShelfChanger = ({
 BookShelfChanger.propTypes = {
   shelf: PropTypes.string,
   handleShelfChange: PropTypes.func.isRequired,
-  displayNone: PropTypes.bool.isRequired,
 };
 
 export default BookShelfChanger;
